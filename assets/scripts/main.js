@@ -52,20 +52,29 @@ function initializeServiceWorker() {
         // Steps B3-B6 will be *inside* the event listener's function created in B2
         // B3. TODO - Register './sw.js' as a service worker (The MDN article
         //            "Using Service Workers" will help you here)
-        try {
-          const registration =  navigator.serviceWorker.register("/sw.js", {
-            scope: "/",
-          });
+        navigator.serviceWorker.register('./sw.js')
+      .then((registration) => {
+        // B4: Service worker registration successful
+        console.log('Service Worker registered successfully:', registration);
+      })
+      .catch((error) => {
+        // B5: Service worker registration failed
+        console.error('Service Worker registration failed:', error);
+      });
+        //try {
+         // const registration =  navigator.serviceWorker.register("/sw.js", {
+          //  scope: "/",
+          //});
                     // B4. TODO - Once the service worker has been successfully registered, console
           //            log that it was successful.
           // B5. TODO - In the event that the service worker registration fails, console
           //            log that it has failed.
-          if (registration) {
-            console.log('Service Worker registered successfully:', registration);
-          } 
-        } catch (error) {
-          console.error(`Registration failed with ${error}`);
-        }
+          //if (registration) {
+           // console.log('Service Worker registered successfully:', registration);
+          //} 
+        //} catch (error) {
+          //console.error(`Registration failed with ${error}`);
+        //}
     });
     }
 
